@@ -30,7 +30,6 @@ function convertDates(){
 
 function getDate(date) {
     var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-
     return months[date.getMonth()] + ' ' + twoDigitNum(date.getDate()) + ', '
     + date.getFullYear() + ' ' + twoDigitNum(date.getHours()) + ':' + twoDigitNum(date.getMinutes());
 }
