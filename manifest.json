@@ -1,0 +1,33 @@
+{
+  "manifest_version": 2,
+
+  "name": "TC LOCALE",
+  "description": "TopCoder Locale",
+  "version": "1.0",
+  "options_page": "html/settings.html",
+  "permissions": [
+    "storage"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["https://community.topcoder.com/PactsMemberServlet?module=PaymentHistory*"],
+      "css": ["css/pacts.css"],
+      "js": ["js/pacts.js"]
+    },
+    {
+      "matches": ["https://www.topcoder.com/challenges/*"],
+      "css": ["css/challenges.css"],
+      "js": ["js/challenges.js"]
+    },
+    {
+      "matches": ["https://www.topcoder.com/challenge-details/*"],
+      "css": ["css/challenge-details.css"],
+      "js": ["js/challenge-details.js"]
+    },
+    {
+      "matches": ["https://apps.topcoder.com/forums/*"],
+      "css": ["css/forums.css"],
+      "js": ["js/forums.js"]
+    }
+  ]
+}

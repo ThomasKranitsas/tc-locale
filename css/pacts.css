@@ -1,0 +1,76 @@
+#payments .valueR {
+    padding: 19px 0 15px !important;
+}
+
+#payments .valueC {
+    color: #96d4b8;
+}
+
+#payments .status-custom {
+    display: block;
+    text-align: center;
+}
+
+#payments .Owed.status-custom {
+    color: #fff!important;
+    background: #ff9900;
+    border-radius: 4px;
+    padding: 0 4px;
+}
+
+#payments .Paid.status-custom {
+    color: #fff!important;
+    background: #5ed668;
+    border-radius: 4px;
+    padding: 0 4px;
+}
+
+#payments .payment-type {
+    text-align: center;
+}
+
+#payments .payment-date b {
+    background: #5ed668;
+    color: #fff;
+    display: block;
+    padding: 0 4px;
+    border-radius: 4px;
+}
+
+#payments .headerRow td {
+    line-height: 18px;
+    text-align: center;
+}
+
+.usdValue {
+    background: #ea4b4b;
+    text-align: center;
+    border-radius: 4px;
+    margin: -8px 0 4px;
+    color: #fff;
+}
+
+.eurValue {
+    background: #5ed668;
+    text-align: center;
+    border-radius: 4px;
+    margin: 8px 0 0;
+    color: #fff;
+}
+
+#payments .realease-date {
+    border: 2px solid #4baeea;
+    color: #4baeea;
+    font-weight: bold !important;
+    border-top: none;
+    border-bottom: none;
+    padding: 19px 4px 15px !important;
+}
+
+#payments input[type=checkbox][disabled] {
+    box-shadow: 0px 0px 2px 2px #ea4b4b;
+}
+
+#payments input[type=checkbox], #payments input[type=checkbox][checked] {
+    box-shadow: 0px 0px 2px 2px #5ed668;
+}

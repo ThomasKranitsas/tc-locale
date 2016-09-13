@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head><title>TC Locale - Settings</title></head>
+<body>
+
+  Prefered currency:
+  <select id="currency">
+    <option value="USD">USD</option>
+    <option value="EUR">EUR</option>
+  </select>
+
+  <hr>
+
+  <label>
+    Use local date formats for challenge deadlines?
+    <input type="checkbox" id="localDates">
+  </label>
+
+  <label>
+    Substract Payoneer fees from payments
+    <input type="checkbox" id="payoneer">
+  </label>
+
+  <div id="status"></div>
+  <button id="save">Save</button>
+  <button id="restore">Restore</button>
+
+  <script src="../js/settings.js"></script>
+</body>
+</html>
