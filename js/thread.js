@@ -7,20 +7,19 @@ document.getElementsByTagName('body')[0].appendChild(button);
 
 function convertDates(){
   document.getElementById("convertDatesBtn").remove();
-  var tbody = document.getElementsByClassName('rtTable')[0].children[0];
+  var dates = document.getElementsByClassName('rtHeader');
 
-  for(var i=1; i<tbody.children.length; i++){
-    if(tbody.children[i].children[2].innerHTML !== '&nbsp;'){
-      tbody.children[i].children[2].children[0].innerHTML = tbody.children[i].children[2].children[0].innerHTML.trim().split('at').join('');
-      tbody.children[i].children[2].children[0].innerHTML = getDate(new Date(tbody.children[i].children[2].children[0].innerHTML));
-    }
+  for(var i=0; i<dates.length; i++){
+    var dateIndex = (dates[i].children[0].children.length > 1) ? 1 : 0;
+    dates[i].children[0].children[dateIndex].innerHTML = dates[i].children[0].children[dateIndex].innerHTML.split('at').join('');
+    dates[i].children[0].children[dateIndex].innerHTML = getDate(new Date(dates[i].children[0].children[dateIndex].innerHTML));
   }
 }
 
 function getDate(date) {
   var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
   var days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
-  return days[date.getDay()-1] + ', ' + months[date.getMonth()] + ' ' + date.getDate() + ' '
+  return days[date.getDay()-1] + ', ' + months[date.getMonth()] + ' ' + date.getDate() + ', '
   + date.getFullYear() + ' at ' + twoDigitNum(date.getHours()) + ':' + twoDigitNum(date.getMinutes()) + " (Local time)";
 }
 

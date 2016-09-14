@@ -25,9 +25,14 @@
       "js": ["js/challenge-details.js"]
     },
     {
-      "matches": ["https://apps.topcoder.com/forums/*"],
+      "matches": ["https://apps.topcoder.com/forums/?module=Category*"],
       "css": ["css/forums.css"],
       "js": ["js/forums.js"]
+    },
+    {
+      "matches": ["https://apps.topcoder.com/forums/?module=Thread*"],
+      "css": ["css/thread.css"],
+      "js": ["js/thread.js"]
     }
   ]
 }
