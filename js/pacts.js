@@ -1,49 +1,49 @@
 var rate = 1; // Default exchange rate
 var payments = document.getElementsByClassName('valueR'); // load all payment values
 var selectedCurrency = 'USD';
+
+    var currencies = {
+      "USD":{
+        "prefix": "$ ",
+        "suffix": ""
+      },
+      "EUR":{
+        "prefix":"",
+        "suffix":" &euro;"
+      }
+    };
 chrome.storage.sync.get('currency', function(option){
   selectedCurrency = option.currency;
-});
-var currencies = {
-  "USD":{
-    "prefix": "$ ",
-    "suffix": ""
-  },
-  "EUR":{
-    "prefix":"",
-    "suffix":" &euro;"
-  }
-};
+    if(selectedCurrency !== 'USD'){
+      // Make an async call to retrieve the latests exchange rates
+      httpGetAsync("https://api.fixer.io/latest?base=USD", function(data) {
+        rate = data.rates[selectedCurrency];
+        // Modify all payments in DOM
+        for(var i=0; i < payments.length; i++){
+          var newInnerHTML = document.createElement('div');
 
-if(selectedCurrency !== 'USD'){
-  // Make an async call to retrieve the latests exchange rates
-  httpGetAsync("http://api.fixer.io/latest?base=USD", function(data) {
-    rate = data.rates[selectedCurrency];
-    // Modify all payments in DOM
-    for(var i=0; i < payments.length; i++){
-      var newInnerHTML = document.createElement('div');
+          var usdText = document.createElement('div');
+          usdText.className += ' usdValue';
+          usdText.innerHTML = payments[i].innerHTML;
+          newInnerHTML.appendChild(usdText);
 
-      var usdText = document.createElement('div');
-      usdText.className += ' usdValue';
-      usdText.innerHTML = payments[i].innerHTML;
-      newInnerHTML.appendChild(usdText);
+          var eurText = document.createElement('div');
+          eurText.className += ' eurValue';
+          eurText.innerHTML = convert(payments[i].innerHTML);
+          newInnerHTML.appendChild(eurText);
 
-      var eurText = document.createElement('div');
-      eurText.className += ' eurValue';
-      eurText.innerHTML = convert(payments[i].innerHTML);
-      newInnerHTML.appendChild(eurText);
+          payments[i].innerHTML = "";
+          payments[i].appendChild(newInnerHTML);
 
-      payments[i].innerHTML = "";
-      payments[i].appendChild(newInnerHTML);
-
-      payments[i].parentElement.children[1].className += ' payment-type';
-      payments[i].parentElement.children[5].className += ' realease-date';
-      payments[i].parentElement.children[6].className += ' payment-date';
-      payments[i].parentElement.children[4].children[0].className += ' status-custom';
+          payments[i].parentElement.children[1].className += ' payment-type';
+          payments[i].parentElement.children[5].className += ' realease-date';
+          payments[i].parentElement.children[6].className += ' payment-date';
+          payments[i].parentElement.children[4].children[0].className += ' status-custom';
+        }
+      });
     }
-  });
-}
 
+});
 // Convert USD value to EUR
 function convert (i) {
   var t = i.split('.').join('').split('$ ').join('').split(',').join('.');

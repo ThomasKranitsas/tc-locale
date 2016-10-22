@@ -1,0 +1,25 @@
+.coverted-date-popup {
+  display: block;;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  padding: 6px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 2px 2px 8px #ddd;
+}
+
+.coverted-date-popup.popup-hidden {
+  display: none;
+}
+
+.coverted-date-popup span {
+  text-align: center;
+  display: block;
+  background: #03A9F4;
+  padding: 2px 8px;
+  color: #fff;
+  border-radius: 6px;
+}
