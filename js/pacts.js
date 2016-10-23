@@ -1,59 +1,61 @@
 var rate = 1; // Default exchange rate
 var payments = document.getElementsByClassName('valueR'); // load all payment values
 var selectedCurrency = 'USD';
+var substactPayoneerFees = false;
+var pact = {};
 
-    var currencies = {
-      "USD":{
-        "prefix": "$ ",
-        "suffix": ""
-      },
-      "EUR":{
-        "prefix":"",
-        "suffix":" &euro;"
-      }
-    };
-chrome.storage.sync.get('currency', function(option){
-  selectedCurrency = option.currency;
-    if(selectedCurrency !== 'USD'){
+chrome.storage.sync.get('pact', function(option){
+  pact = option.pact;
+  selectedCurrency = pact.currency;
+  if(selectedCurrency !== 'USD'){
+    if (pact.customRate) {
+      rate = pact.rate;
+      modifyPayments();
+    } else {
       // Make an async call to retrieve the latests exchange rates
       httpGetAsync("https://api.fixer.io/latest?base=USD", function(data) {
         rate = data.rates[selectedCurrency];
-        // Modify all payments in DOM
-        for(var i=0; i < payments.length; i++){
-          var newInnerHTML = document.createElement('div');
-
-          var usdText = document.createElement('div');
-          usdText.className += ' usdValue';
-          usdText.innerHTML = payments[i].innerHTML;
-          newInnerHTML.appendChild(usdText);
-
-          var eurText = document.createElement('div');
-          eurText.className += ' eurValue';
-          eurText.innerHTML = convert(payments[i].innerHTML);
-          newInnerHTML.appendChild(eurText);
-
-          payments[i].innerHTML = "";
-          payments[i].appendChild(newInnerHTML);
-
-          payments[i].parentElement.children[1].className += ' payment-type';
-          payments[i].parentElement.children[5].className += ' realease-date';
-          payments[i].parentElement.children[6].className += ' payment-date';
-          payments[i].parentElement.children[4].children[0].className += ' status-custom';
-        }
+        modifyPayments();
       });
     }
+  }
 
 });
+
+function modifyPayments () {
+  // Modify all payments in DOM
+  for(var i=0; i < payments.length; i++){
+    var newInnerHTML = document.createElement('div');
+
+    var usdText = document.createElement('div');
+    usdText.className += ' usdValue';
+    usdText.innerHTML = payments[i].innerHTML;
+    newInnerHTML.appendChild(usdText);
+
+    var eurText = document.createElement('div');
+    eurText.className += ' cusCurValue';
+    eurText.innerHTML = convert(payments[i].innerHTML);
+    newInnerHTML.appendChild(eurText);
+
+    payments[i].innerHTML = "";
+    payments[i].appendChild(newInnerHTML);
+
+    payments[i].parentElement.children[1].className += ' payment-type';
+    payments[i].parentElement.children[5].className += ' realease-date';
+    payments[i].parentElement.children[6].className += ' payment-date';
+    payments[i].parentElement.children[4].children[0].className += ' status-custom';
+  }
+}
+
 // Convert USD value to EUR
 function convert (i) {
   var t = i.split('.').join('').split('$ ').join('').split(',').join('.');
   var val = parseFloat(t) * rate;
-  chrome.storage.sync.get('payoneer', function(option){
-    if(option.payoneer === true){
-      val -= (val * .02);
-    }
-  });
-  return currencies[selectedCurrency].prefix + val.toFixed(1) + currencies[selectedCurrency].suffix;
+  if(substactPayoneerFees){
+    val -= (val * .02);
+  }
+  val -= pact.fees;
+  return pact.prefix + val.toFixed(1) + pact.suffix;
 }
 
 // Retrieve excange rates

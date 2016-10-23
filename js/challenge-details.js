@@ -5,13 +5,15 @@ button.setAttribute("id", "convertDatesBtn");
 button.addEventListener('click', function() { convertDates(); });
 document.getElementById('main').appendChild(button);
 
-var OR = document.createElement('p');
-var ORLink = document.createElement('a');
-ORLink.innerHTML = 'View in Online Review'
-ORLink.setAttribute('href', 'https://software.topcoder.com/review/actions/ViewProjectDetails?pid=' + getChallengeId());
-OR.appendChild(ORLink);
-var contestLink = document.getElementsByClassName('contestLinks')[1].children[1];
-contestLink.appendChild(OR);
+setTimeout(function () {
+  var OR = document.createElement('p');
+  var ORLink = document.createElement('a');
+  ORLink.innerHTML = 'View in Online Review'
+  ORLink.setAttribute('href', 'https://software.topcoder.com/review/actions/ViewProjectDetails?pid=' + getChallengeId());
+  OR.appendChild(ORLink);
+  var contestLink = document.getElementsByClassName('contestLinks')[1].children[1];
+  contestLink.appendChild(OR);
+}, 2000);
 
 function convertDates(){
   document.getElementById("convertDatesBtn").remove();

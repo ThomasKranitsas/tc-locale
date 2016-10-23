@@ -1,33 +1,41 @@
 // Saves settings to chrome.storage
 function save_settings() {
   var currency = document.getElementById('currency').value;
+  var fees = document.getElementById('fees').value;
+  var customRate = document.getElementById('customRate').checked;
   var payoneer = document.getElementById('payoneer').checked;
+  var prefix = document.getElementById('prefix').value;
+  var suffix = document.getElementById('suffix').value;
+  var rate = document.getElementById('rate').value;
   chrome.storage.sync.set({
-    currency: currency,
-    payoneer: payoneer
+    pact:{
+      currency,
+      fees,
+      customRate,
+      payoneer,
+      prefix,
+      suffix,
+      rate
+    }
   }, function() {
     // Update status to let user know settings were saved.
     var status = document.getElementById('status');
-    status.textContent = 'Settings updated!';
+    status.className = 'alert alert-info';
     // Hide the status text
     setTimeout(function() {
-      status.textContent = '';
+    status.className = 'hidden';
     }, 750);
   });
 }
 
-// Restore default settings
-function restore_settings() {
-  // Use default value currency = 'USD' and localDates = false.
-  chrome.storage.sync.get({
-    currency: 'USD',
-    payoneer: false
-  }, function(items) {
-    document.getElementById('currency').value = items.favoriteColor;
-    document.getElementById('payoneer').checked = items.payoneer;
-  });
-}
+chrome.storage.sync.get('pact', function(option){
+    document.getElementById('currency').value = option.pact.currency;
+    document.getElementById('fees').value = option.pact.fees;
+    document.getElementById('customRate').checked = option.pact.customRate;
+    document.getElementById('payoneer').checked = option.pact.payoneer;
+    document.getElementById('prefix').value = option.pact.prefix;
+    document.getElementById('suffix').value = option.pact.suffix;
+    document.getElementById('rate').value = option.pact.rate;
+});
 
-//document.addEventListener('DOMContentLoaded', restore_settings);
 document.getElementById('save').addEventListener('click', save_settings);
-document.getElementById('restore').addEventListener('click', restore_settings);

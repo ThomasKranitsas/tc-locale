@@ -13,9 +13,9 @@ var mouseX = 0;
 var mouseY = 0;
 
 function convertHighlightedDate(e){
-  var selection = getSelectionText();
-  var convertedDate = Date.parse(selection.split('at').join(''));
-  if(selection !== '' && convertedDate + '' !== 'NaN' && isNaN(parseFloat(selection))){
+  var selection = getSelectionText().split('at').join(' ').split('.').join('/').split(',').join(' ');
+  var convertedDate = Date.parse(selection);
+  if(selection !== '' && convertedDate + '' !== 'NaN'){
     popup.className = 'coverted-date-popup';
     popup.style.top = (e.clientY + 20) + 'px';
     popup.style.left = mouseX + 'px';

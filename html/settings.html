@@ -1,24 +1,70 @@
 <!DOCTYPE html>
 <html>
 <head><title>TC Locale - Settings</title></head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" media="screen">
+<link rel="stylesheet" href="../css/settings.css" media="screen">
 <body>
-  <h1>PACTS</h1>
-  Prefered currency:
-  <select id="currency">
-    <option value="USD">USD</option>
-    <option value="EUR">EUR</option>
-  </select>
+  <div class="container">
+    <div class="col-sm-4 col-sm-offset-4 main-box">
+      <h1 class="text-center">PACT Settings</h1>
+      <label>Prefered currency:</label>
+      <select class="form-control" id="currency">
+        <option value="AUD">AUD</option>
+        <option value="BGN">BGN</option>
+        <option value="BRL">BRL</option>
+        <option value="CAD">CAD</option>
+        <option value="CHF">CHF</option>
+        <option value="CNY">CNY</option>
+        <option value="CZK">CZK</option>
+        <option value="DKK">DKK</option>
+        <option value="GBP">GBP</option>
+        <option value="HKD">HKD</option>
+        <option value="HRK">HRK</option>
+        <option value="HUF">HUF</option>
+        <option value="IDR">IDR</option>
+        <option value="ILS">ILS</option>
+        <option value="INR">INR</option>
+        <option value="JPY">JPY</option>
+        <option value="KRW">KRW</option>
+        <option value="MXN">MXN</option>
+        <option value="MYR">MYR</option>
+        <option value="NOK">NOK</option>
+        <option value="NZD">NZD</option>
+        <option value="PHP">PHP</option>
+        <option value="PLN">PLN</option>
+        <option value="RON">RON</option>
+        <option value="RUB">RUB</option>
+        <option value="SEK">SEK</option>
+        <option value="SGD">SGD</option>
+        <option value="THB">THB</option>
+        <option value="TRY">TRY</option>
+        <option value="ZAR">ZAR</option>
+        <option value="EUR">EUR</option>
+      </select>
+      <hr>
+      <label>Currency prefix:</label>
+      <input class="form-control" type="text" id="prefix">
+      <label>Currency suffix:</label>
+      <input class="form-control" type="text" id="suffix">
+      <br>
+      <label>Use custom exchange rate:</label>
+      <input type="checkbox" id="customRate"/>
+      <label>Exchange rate (with USD):</label>
+      <input class="form-control" type="number" id="rate">
+      <hr>
+      <label>
+        Fees to substract (in your local currency):
+      </label>
+      <input class="form-control" type="number" id="fees">
 
-  <hr>
+      <label>Substract Payoneer fees:</label>
+      <input type="checkbox" id="payoneer"/>
+      <hr>
 
-  <label>
-    Substract Payoneer fees from payments
-    <input type="checkbox" id="payoneer">
-  </label>
-
-  <div id="status"></div>
-  <button id="save">Save</button>
-  <button id="restore">Restore</button>
+      <div class="alert alert-info hidden" id="status">Settings updated!</div>
+      <button class="btn btn-success btn-block" id="save">Save</button>
+    </div>
+  </div>
 
   <script src="../js/settings.js"></script>
 </body>

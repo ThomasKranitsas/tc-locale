@@ -1,0 +1,17 @@
+body {
+  background-color: #f1f1f1;
+}
+.main-box {
+    background: #e3e6ea;
+    margin-top: 20px;
+    padding-bottom: 20px;
+    border: 1px solid #5b808c;
+    box-shadow: 0 2px 2px 0 black;
+    border-radius: 2px;
+}
+.hidden {
+  display: none;
+}
+.form-control {
+  background: #f9f9f9;
+}
