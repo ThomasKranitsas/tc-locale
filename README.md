@@ -5,6 +5,7 @@ This is a Google Chrome extension **only for Topcoder members** (it's useless ou
 Features:
 
 * Display PACTs in your local currency.
+
 > Open the extension settings to edit your currency preferences.
 
 * Display dates in your local timezone (Click the "Use local date format" button).
