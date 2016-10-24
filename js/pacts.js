@@ -49,7 +49,7 @@ function modifyPayments () {
 
 // Convert USD value to EUR
 function convert (i) {
-  var t = i.split('.').join('').split('$ ').join('').split(',').join('.');
+  var t = i.split('$').join('').substring(0,i.length-3).split(',').join('').split('.').join('');
   var val = parseFloat(t) * rate;
   if(substactPayoneerFees){
     val -= (val * .02);

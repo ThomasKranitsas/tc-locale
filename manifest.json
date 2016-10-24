@@ -3,7 +3,7 @@
 
   "name": "TC LOCALE",
   "description": "TopCoder Locale",
-  "version": "1.0",
+  "version": "1.0.2",
   "options_page": "html/settings.html",
   "permissions": [
     "storage"
