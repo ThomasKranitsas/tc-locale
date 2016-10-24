@@ -8,6 +8,7 @@ Features:
 > Open the extension settings to edit your currency preferences.
 
 * Display dates in your local timezone (Click the "Use local date format" button).
+
 > Date conversion only works for:
 
 > Challenge deadlines.
