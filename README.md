@@ -18,6 +18,8 @@ Features:
 
 > Challenge registration/submission dates.
 
+* A link to OR has been added to challenge details page under the **CHALLENGE LINKS** section on the sidebar.
+
 
 More features coming soon :)
 
