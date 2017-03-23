@@ -13,3 +13,66 @@
 .convert-dates:hover, .convert-dates:focus {
   background: #2196F3;
 }
+
+.rtBody table {
+  width: 95%;
+  border: none;
+}
+
+td.rtTextCell::before {
+  content: ' ';
+  position: absolute;
+  left: -11px;
+  top: 31px;
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 22px solid transparent;
+  border-right: 10px solid #e7e7e7;
+}
+
+td.rtTextCell::after {
+  content: ' ';
+  position: absolute;
+  left: -10px;
+  top: 30px;
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 22px solid transparent;
+  border-right: 10px solid #fcfcfc;
+}
+
+table.rtTable.rtTablePost tr:first-child .rtHeader {
+  background: transparent;
+  padding: 10px 25px 0 130px;
+  border: none;
+}
+
+.rtTable .rtPosterCell {
+  background: transparent;
+  border: none;
+}
+
+.rtPosterSpacer {
+  width: 100px;
+  text-align: center;
+}
+
+.rtPosterSpacer img {
+  border-radius: 100%;
+  box-shadow: 0 2px 2px #ccc;
+  border: 1px solid #ccc;
+}
+
+
+.rtTable .rtTextCell, .rtTable .rtTextCellHlt {
+  width: 100%;
+  position: relative;
+  vertical-align: top;
+  padding-left: 15px;
+  padding-right: 10px;
+  border-radius: 20px;
+  border: none;
+  box-shadow: 2px 4px 2px 0 #ccc;
+}
